@@ -4,8 +4,9 @@ Core machine learning infrastructure for the LifeHarmony recommender system.
 ## 1. Model Architecture 
 pythondef build_harmony_model(input_dim, output_dim, hidden_layers=[128, 64, 32]):
 
-* Architecture: A feed-forward neural network with configurable hidden layers
-* Input: User attributes and domain priorities (14 features total)
+Architecture: A feed-forward neural network with configurable hidden layers
+
+Input: User attributes and domain priorities (14 features total)
 Processing:
 
 - Input normalization with BatchNormalization
@@ -13,33 +14,33 @@ Processing:
 - Dropout (30%) to prevent overfitting
 
 
-* Output: Multi-label classification for recommendations using sigmoid activation
-* Training: Uses Adam optimizer and binary cross-entropy loss function
+Output: Multi-label classification for recommendations using sigmoid activation
+Training: Uses Adam optimizer and binary cross-entropy loss function
 
 This architecture is well-suited for a recommendation system as it allows the model to learn complex relationships between user attributes and appropriate recommendations.
 
 ## 2. Data Preparation (prepare_data)
 
-* Input Processing:
+Input Processing:
 
 - Converts categorical features (marital status, occupation, etc.) to numerical values
 - Creates a fixed-length feature vector for each user
 - Includes both user attributes and life domain priorities
 
 
-* Output Processing:
+Output Processing:
 
 - Creates a multi-hot encoding for recommendations
 - Each recommendation is treated as a binary classification problem
 
 
-* Feature Scaling:
+Feature Scaling:
 
 - Uses StandardScaler to normalize age and budget
 - Preserves categorical encodings for other features
 
 
-* Data Splitting:
+Data Splitting:
 
 - 80% training, 20% validation with fixed random seed for reproducibility
 
@@ -47,14 +48,14 @@ This architecture is well-suited for a recommendation system as it allows the mo
 
 ## 3. Model Training (train_model)
 
-* Training Process:
+Training Process:
 
 - Uses early stopping to prevent overfitting
 - Monitors validation loss to determine optimal training duration
 - Uses batch size of 32 and maximum 100 epochs
 
 
-* Model Persistence:
+Model Persistence:
 
 - Saves the trained model in H5 format
 - Stores recommendation mappings and feature scaler in pickle files
@@ -63,13 +64,13 @@ This architecture is well-suited for a recommendation system as it allows the mo
 
 
 ## 4. Recommendation Generation (get_recommendations)
-* Input Processing:
+Input Processing:
 
 - Takes a feature vector representing a user
 - Applies the same scaling used during training
 
 
-* Prediction Strategy:
+Prediction Strategy:
 
 - Generates probability scores for all possible recommendations
 - Uses a hybrid approach for recommendation selection:
@@ -79,7 +80,7 @@ This architecture is well-suited for a recommendation system as it allows the mo
 
 
 
-* Output:
+Output:
 
 - Returns a list of relevant recommendations
 
